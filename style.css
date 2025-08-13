@@ -1,0 +1,177 @@
+/* General App Styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url('123.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;  /* This makes the background stay fixed */
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+
+/* App Container */
+.app-container {
+  width: 95%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+header h1 {
+  font-size: 1.8em;
+  margin-bottom: 5px;
+}
+header p {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+/* Navigation Buttons - Spanner Shape */
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.tab-btn {
+  background: linear-gradient(145deg, #444b5c, #2b2f3b);
+  color: #062a4d;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  flex: 1;
+  margin: 0 5px;
+  position: relative;
+  cursor: pointer;
+  clip-path: polygon(
+    15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%, 0% 15%
+  ); /* Spanner-like octagon */
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s, transform 0.2s;
+}
+.tab-btn.active {
+  background: linear-gradient(145deg, #1e90ff, #0c5ec0);
+}
+.tab-btn:hover {
+  background: linear-gradient(145deg, #5a6274, #3c4152);
+  transform: scale(1.05);
+}
+
+/* Glassmorphism Tab Content */
+.tab-content {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+
+/* Input Fields */
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 0.9em;
+}
+
+/* Buttons inside sections */
+.tab-content button {
+  background: linear-gradient(145deg, #1e90ff, #0c5ec0);
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.tab-content button:hover {
+  background: linear-gradient(145deg, #5ab0ff, #0c5ec0);
+  transform: scale(1.05);
+}
+
+/* Past Diagnoses List */
+#historyList {
+  list-style: none;
+  padding: 0;
+}
+#historyList li {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 10px;
+  margin: 5px 0;
+  border-radius: 8px;
+  font-size: 0.9em;
+}
+
+/* Output Box */
+.output {
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(30, 144, 255, 0.15);
+  border-radius: 10px;
+}
+/* Select Dropdown Styling */
+select {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #2b2f3b; /* Solid background for visibility */
+  color: #ffffff;
+  font-size: 0.9em;
+  appearance: none;
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Options inside the dropdown */
+select option {
+  background: #1c1f26; /* Dark background inside dropdown */
+  color: #ffffff; /* Bright text for readability */
+}
+/* Output Box - Glassmorphism style */
+.output {
+  margin: 10px 0;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.95em;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Smooth fade-in effect */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fallBolt {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}

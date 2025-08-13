@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartFix Barney 2.0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- HEADER -->
+    <header>
+      <h1>📱 SmartFix Barney 2.0</h1>
+      <p>Your Advanced Phone Repair Assistant 
+        <br>with more than 30 issues and their Solutions</p>
+    </header>
+
+    
+
+    <!-- DIAGNOSE TAB -->
+    <section id="diagnose" class="tab-content active">
+      <h2>🔍 Diagnose an Issue</h2>
+
+      <!-- Select from list -->
+     
+      <!-- Select from list -->
+<label for="issue">Select a common issue:</label>
+<select id="issue">
+ <option value="">-- Select an issue --</option>
+<option value="batteryDrain">🔋 Battery Drains Fast</option>
+<option value="notCharging">⚡ Not Charging</option>
+<option value="screenUnresponsive">📱 Screen Not Responding</option>
+<option value="slowPerformance">🐢 Slow Performance</option>
+<option value="overheating">🔥 Overheating</option>
+<option value="storageFull">💾 Lack of Storage Space</option>
+<option value="lagging">🐌 Lagging or Freezing</option>
+<option value="appCrashes">💥 Crashing Apps</option>
+<option value="cameraIssue">📷 Blurry Camera</option>
+<option value="chargingPortFault">🔌 Faulty Charging Port</option>
+<option value="connectivity">📶 Connectivity Issues (Wi-Fi, Bluetooth, Cellular)</option>
+<option value="softwareGlitch">💽 Software Glitches or Freezes</option>
+<option value="unresponsiveTouch">✋ Unresponsive Touch / Dead Zones</option>
+<option value="callIssues">📞 Can't Make or Receive Calls</option>
+<option value="networkSim">📡 SIM or Network Problems</option>
+<option value="phantomVibrations">📳 Phantom Vibrations</option>
+<option value="batterySafety">⚠️ Overheating / Battery Safety Risk</option>
+<option value="hardwareFailure">🛠 Hardware Problems</option>
+<option value="slowCharging">⏱ Slow or No Charging</option>
+
+<!-- New issues added -->
+<option value="fingerprintNotWorking">👆 Fingerprint Sensor Not Working</option>
+<option value="faceIDIssue">👤 Face Unlock Not Working</option>
+<option value="wifiNotConnecting">📡 Wi-Fi Not Connecting</option>
+<option value="bluetoothNotPairing">🔷 Bluetooth Not Pairing</option>
+<option value="speakerNotWorking">🔈 Speaker Not Working</option>
+<option value="microphoneNotWorking">🎤 Microphone Not Working</option>
+<option value="gpsNotAccurate">🗺 GPS Location Inaccurate</option>
+<option value="notificationsNotShowing">🔔 Notifications Not Showing</option>
+<option value="ghostTouch">👻 Ghost Touch / Random Touches</option>
+<option value="phoneNotTurningOn">🚫 Phone Won’t Turn On</option>
+<option value="randomRestart">🔄 Phone Restarts Randomly</option>
+<option value="headphoneJackIssue">🎧 Headphones Not Detected</option>
+<option value="overheatingWhileCharging">🔥 Overheating While Charging</option>
+<option value="waterDamage">💧 Water Damage</option>
+
+
+  <button onclick="diagnoseIssue()">Diagnose</button>
+      <p style="text-align:center;margin:10px 0;">OR</p>
+
+      <!-- Type your own issue -->
+  <input type="text" id="customIssue" placeholder="Type your phone issue we look into it...">
+
+<button onclick="searchCustomIssue()">Search Issue</button>
+
+<script>
+function speak(text) {
+  const voice = new SpeechSynthesisUtterance(text);
+  speechSynthesis.speak(voice);
+}
+
+function searchCustomIssue() {
+  const issue = document.getElementById("customIssue").value.trim();
+
+  if (issue === "") {
+    alert("Please type an issue first.");
+    return;
+  }
+
+  // Read out loud
+  speak(`You typed: ${issue}. Searching now...`);
+
+  // Wait a moment to let speech start before opening search
+  setTimeout(() => {
+    const googleUrl = "https://www.google.com/search?q=" + encodeURIComponent(issue);
+    window.open(googleUrl, "_blank");
+  }, 1200);
+}
+</script>
+
+
+      <button onclick="diagnoseIssue()">Diagnose</button>
+
+  <div class="output" id="output"></div>
+  <button onclick="clearDiagnosis()" style="background: crimson; color: white; margin-top: 8px; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer;">
+    ❌ Clear Diagnosis
+  </button>
+
+      <!-- Diagnosis Output -->
+      <div class="output" id="output"></div>
+
+      <!-- History -->
+      <h3>📜 Past Diagnoses</h3>
+      <ul id="historyList"></ul>
+ 
+    <!-- TIPS TAB -->
+    <section id="tips" class="tab-content">
+      <h2>💡 Prestigious Tips</h2>
+      <ul>
+        <li>Keep your battery between 20% - 80% for longer lifespan.</li>
+        <li>Clear cache weekly to boost speed.</li>
+        <li>Turn off background apps when not in use.</li>
+        <li>Install updates to improve performance and security.</li>
+        <li>Use original chargers to prevent damage.</li>
+      </ul>
+    </section>
+
+    <!-- PHONE HEALTH TAB -->
+    <section id="health" class="tab-content">
+      <h2>📊 Phone Health</h2>
+      <p>Battery: <span id="batteryPercent">--%</span></p>
+      <p>Storage Used: <span id="storageUsed">-- GB</span></p>
+      <p>Performance: <span id="performanceScore">--</span></p>
+      <button onclick="scanPhoneHealth()">Scan Now</button>
+    </section>
+
+    <!-- SETTINGS TAB -->
+    <section id="settings" class="tab-content">
+      <h2>⚙ Settings</h2>
+      <button onclick="toggleTheme()">Toggle Dark/Light Mode</button>
+      <button onclick="setReminder()">Set a Reminder</button>
+      <button onclick="clearHistory()">Clear Past Diagnoses</button>
+
+
+        <footer style="text-align: center; padding: 12px 0; background: #1c1f26; color: #ffffff; position: relative; bottom: 0; width: 100%;">
+    <p>&copy; 2023 SmartFix Barney Enterprise. All rights reserved.</p>
+  </footer>
+    </section>
+    <!-- NAVIGATION TABS -->
+    <nav>
+     <button class="tab-btn active" onclick="window.open('https:smartfix-reviews-80dc6.firebaseapp.com', '_blank')">Give feedback</button>
+
+    <button class="tab-btn" onclick="window.open('https:wa.me/254706876154?text=I%20visited%20your%20web%20app', '_blank')">Contact Us</button>
+<section>
+<button class="tab-btn" onclick="scanPhone()">Phone Scan</button>
+
+<script>
+function scanPhone() {
+    let messages = [];
+
+    // Storage Space
+    if (navigator.storage && navigator.storage.estimate) {
+        navigator.storage.estimate().then(estimate => {
+            let totalGB = (estimate.quota / (1024 ** 3)).toFixed(2);
+            let usedGB = ((estimate.quota - estimate.usage) / (1024 ** 3)).toFixed(2);
+            messages.push(`💾 Storage: ${usedGB} GB free out of ${totalGB} GB`);
+            getBatteryInfo(messages);
+        });
+    } else {
+        messages.push("💾 Storage info not supported in this browser.");
+        getBatteryInfo(messages);
+    }
+}
+
+function getBatteryInfo(messages) {
+    if (navigator.getBattery) {
+        navigator.getBattery().then(battery => {
+            let batteryLevel = Math.round(battery.level * 100) + "%";
+            let chargingStatus = battery.charging ? "Charging" : "Not Charging";
+            messages.push(`🔋 Battery: ${batteryLevel} (${chargingStatus})`);
+
+            // Date & Time
+            let now = new Date();
+            messages.push(`⏰ Date & Time: ${now.toLocaleString()}`);
+
+            // Final Message
+            messages.push(`✅ Enjoy your experience!`);
+
+            showPopups(messages);
+        });
+    } else {
+        messages.push("🔋 Battery info not supported in this browser.");
+        let now = new Date();
+        messages.push(`⏰ Date & Time: ${now.toLocaleString()}`);
+        messages.push(`✅ Enjoy your experience!`);
+        showPopups(messages);
+    }
+}
+
+// Sequential popup display
+function showPopups(messages) {
+    let delay = 0;
+    messages.forEach((msg, index) => {
+        setTimeout(() => {
+            let popup = document.createElement("div");
+            popup.innerHTML = msg;
+            popup.style.position = "fixed";
+            popup.style.bottom = "20px";
+            popup.style.left = "50%";
+            popup.style.transform = "translateX(-50%)";
+            popup.style.background = "#333";
+            popup.style.color = "#fff";
+            popup.style.padding = "10px 20px";
+            popup.style.borderRadius = "10px";
+            popup.style.fontFamily = "Arial";
+            popup.style.fontSize = "16px";
+            popup.style.zIndex = "9999";
+            popup.style.opacity = "1";
+            popup.style.transition = "opacity 0.5s ease";
+
+            document.body.appendChild(popup);
+
+            // Fade out after 1.5s
+            setTimeout(() => {
+                popup.style.opacity = "0";
+                setTimeout(() => popup.remove(), 500);
+            }, 1500);
+        }, delay);
+
+        delay += 2000; // 2 seconds gap between popups
+    });
+}
+</script>
+</section>
+<!-- SETTINGS BUTTON -->
+<button class="tab-btn" onclick="openSettings()">⚙ Settings</button>
+
+<!-- SETTINGS PANEL -->
+<div id="settingsPanel" style="
+    display:none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(92, 90, 90);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+    width: 300px;
+    font-family: Arial;
+    z-index: 9999;
+">
+    <h2 style="text-align:center;">⚙ Settings</h2>
+
+    <!-- Voice Assistant Toggle -->
+<!-- Voice Assistant Toggle -->
+<label>
+    <input type="checkbox" id="voiceToggle">
+    Enable Voice Assistant
+</label>
+<hr>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Check saved setting on page load
+  let voiceEnabled = localStorage.getItem("voiceEnabled") === "true";
+
+  // Set toggle state
+  const voiceToggle = document.getElementById("voiceToggle");
+  voiceToggle.checked = voiceEnabled;
+
+  // Update setting when changed
+  voiceToggle.addEventListener("change", function () {
+      voiceEnabled = this.checked;
+      localStorage.setItem("voiceEnabled", voiceEnabled);
+      alert("Voice Assistant " + (voiceEnabled ? "Enabled" : "Disabled"));
+  });
+
+  // Example: text-to-speech function
+  window.speakText = function(text) {
+      if (!voiceEnabled) return; // Skip if voice is disabled
+
+      let msg = new SpeechSynthesisUtterance(text);
+      msg.lang = "en-US";
+      window.speechSynthesis.speak(msg);
+  }
+});
+</script>
+
+    <p><strong>Change Background:</strong></p>
+<button onclick="changeBackground('1.JPG')">Background 1</button>
+<button onclick="changeBackground('2.JPG')">Background 2</button>
+
+<script>
+// On page load, apply saved background
+document.addEventListener("DOMContentLoaded", () => {
+  const savedBg = localStorage.getItem("backgroundImage");
+  if (savedBg) {
+    setBackground(savedBg);
+  }
+});
+
+function changeBackground(image) {
+  setBackground(image);
+  localStorage.setItem("backgroundImage", image);
+}
+
+function setBackground(image) {
+  document.body.style.backgroundImage = `url('${image}')`;
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundPosition = "center";
+}
+</script>
+
+    <button onclick="restoreDefaults()">Restore Default Settings</button>
+
+<script>
+function restoreDefaults() {
+  // Restore voice assistant setting
+  localStorage.setItem("voiceEnabled", "true");
+  const voiceToggle = document.getElementById("voiceToggle");
+  if (voiceToggle) voiceToggle.checked = true;
+
+  // Restore default background image - replace 'default-bg.jpg' with your default
+  document.body.style.backgroundImage = "url('default-bg.jpg')";
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundPosition = "center";
+
+  alert("Settings restored to default.");
+}
+</script>
+
+    <hr>
+
+    <!-- Instagram Link -->
+    <button onclick="window.open('https:instagram.com/YOUR_USERNAME', '_blank')">
+        📷 Visit My Instagram
+    </button>
+
+    <hr>
+    <button onclick="closeSettings()">Close</button>
+</div>
+
+<script>
+let voiceEnabled = true;
+
+// Open Settings
+function openSettings() {
+    document.getElementById("settingsPanel").style.display = "block";
+    document.getElementById("voiceToggle").checked = voiceEnabled;
+}
+
+// Close Settings
+function closeSettings() {
+    document.getElementById("settingsPanel").style.display = "none";
+}
+
+// Toggle Voice
+document.getElementById("voiceToggle").addEventListener("change", function() {
+    voiceEnabled = this.checked;
+    alert("Voice Assistant " + (voiceEnabled ? "Enabled" : "Disabled"));
+});
+
+// Change Background
+function changeBackground(image) {
+    document.body.style.backgroundImage = `url('${image}')`;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+}
+</script>
+
+    </nav>
+
+
+  </div>
+  
+
+  <script src="script.js"></script>
+  
+
+</body>
+
+
+</html>
+
