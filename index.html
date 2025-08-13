@@ -74,6 +74,31 @@
   <input type="text" id="customIssue" placeholder="Type your phone issue we look into it...">
 
 <button onclick="searchCustomIssue()">Search Issue</button>
+  <style>
+    #customIssue {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 13px;
+  font-size: 16px;
+  border: 1px solid #007BFF;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+#customIssue::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+#customIssue:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+  background-color: #4e4e4e;
+}
+
+  </style>
 
 <script>
 function speak(text) {
@@ -400,6 +425,7 @@ function changeBackground(image) {
 
 
 </html>
+
 
 
 
