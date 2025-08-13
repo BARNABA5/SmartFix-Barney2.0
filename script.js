@@ -60,20 +60,20 @@ notCharging: "Not charging. Check charger, cable, and clean charging port.",
 screenUnresponsive: "Screen not responding. Try restarting or booting into safe mode.",
 slowPerformance: "Slow performance. Clear cache, close apps, and restart the device.",
 overheating: "Overheating. Avoid heavy usage, close apps, and remove case.",
-storageFull: "Storage full. Delete unused apps and files, clear cache.",
+storageFull: "Storage full. Delete unused apps and files, clear cache memory in every app .",
 lagging: "Lagging or freezing. Restart device and update software.",
 appCrashes: "Apps crashing. Update or reinstall the problematic app.",
 cameraIssue: "Camera blurry. Clean the lens, restart camera app.",
 chargingPortFault: "Charging port faulty. Clean gently or repair.",
 connectivity: "Connectivity issues. Reset network settings.",
 softwareGlitch: "Software glitch. Restart and update software.",
-unresponsiveTouch: "Unresponsive touch. Clean screen, restart device.",
-callIssues: "Call issues. Check SIM and network coverage.",
-networkSim: "SIM/network problems. Restart or reseat SIM.",
-phantomVibrations: "Phantom vibrations. Might be notification anxiety.",
-batterySafety: "Overheating battery. Stop using, seek service.",
-hardwareFailure: "Hardware failure. Requires technician repair.",
-slowCharging: "Slow charging. Use original charger and cable.",
+unresponsiveTouch: "Unresponsive touch. Clean screen and restart device.",
+callIssues: "Call issues. Check SIM and network coverage in your area.",
+networkSim: "SIM or network problems. Restart or reseat SIM.",
+phantomVibrations: "Phantom vibrations. Might be notification anxiety please avoid the adiction of using your phone too much,Replace one scrolling session with scripture reading 📖.",
+batterySafety: "Overheating battery. Stop using your phone and seek service yo the nearest repair shop.",
+hardwareFailure: "Hardware failure. Requires technician repair,or if you what you can search in the text area the nerest phone repair shop in ypur area.",
+slowCharging: "Slow charging. Use original charger and cable that are built for your branded phone.",
 
 // Added new ones below
 fingerprintNotWorking: "Fingerprint sensor not working. Clean sensor and re-register fingerprints.",
@@ -86,10 +86,10 @@ gpsNotAccurate: "GPS location inaccurate. Enable high accuracy mode and restart 
 notificationsNotShowing: "Notifications not showing. Check app settings and battery optimization.",
 ghostTouch: "Phone registers touches without you touching it. Remove screen protector or check for moisture.",
 phoneNotTurningOn: "Phone won’t power on. Charge for at least 30 minutes and try again.",
-randomRestart: "Phone restarts randomly. Check for software updates or factory reset.",
+randomRestart: "Phone restarts randomly. Check for software updates or factory reset to be the last resort.",
 headphoneJackIssue: "Headphones not detected. Clean jack and check settings.",
 overheatingWhileCharging: "Phone gets hot while charging. Use original charger and avoid using phone while charging.",
-waterDamage: "Water damage suspected. Power off immediately and dry using silica gel or repair service."
+waterDamage: "Water damage suspected. Power off immediately and dry using a bowl full  of rice to suck the moistures and look for s repair service shop near you"
 
     };
     return diagnoses[issue] || "No diagnosis available for this issue.";
@@ -202,3 +202,4 @@ function clearHistory() {
     clearDiagnosis();
     alert("History cleared!");
 }
+
