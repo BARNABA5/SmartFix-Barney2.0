@@ -70,7 +70,7 @@ softwareGlitch: "Software glitch. Restart and update software.",
 unresponsiveTouch: "Unresponsive touch. Clean screen and restart device.",
 callIssues: "Call issues. Check SIM and network coverage in your area.",
 networkSim: "SIM or network problems. Restart or reseat SIM.",
-phantomVibrations: "Phantom vibrations. Might be notification anxiety please avoid the adiction of using your phone too much,Replace one scrolling session with scripture reading 📖.",
+phantomVibrations: "Phantom vibrations. Might be notification anxiety please avoid the adiction of using your phone too much,Replace one scrolling session with Bible scripture reading .",
 batterySafety: "Overheating battery. Stop using your phone and seek service yo the nearest repair shop.",
 hardwareFailure: "Hardware failure. Requires technician repair,or if you what you can search in the text area the nerest phone repair shop in ypur area.",
 slowCharging: "Slow charging. Use original charger and cable that are built for your branded phone.",
@@ -89,7 +89,7 @@ phoneNotTurningOn: "Phone won’t power on. Charge for at least 30 minutes and t
 randomRestart: "Phone restarts randomly. Check for software updates or factory reset to be the last resort.",
 headphoneJackIssue: "Headphones not detected. Clean jack and check settings.",
 overheatingWhileCharging: "Phone gets hot while charging. Use original charger and avoid using phone while charging.",
-waterDamage: "Water damage suspected. Power off immediately and dry using a bowl full  of rice to suck the moistures and look for s repair service shop near you"
+waterDamage: "Water damage suspected. Power off immediately and dry using a bowl full  of rice ,to suck the moistures and look for s repair service shop near you"
 
     };
     return diagnoses[issue] || "No diagnosis available for this issue.";
@@ -202,4 +202,5 @@ function clearHistory() {
     clearDiagnosis();
     alert("History cleared!");
 }
+
 
