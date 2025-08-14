@@ -202,5 +202,101 @@ function clearHistory() {
     clearDiagnosis();
     alert("History cleared!");
 }
+// =========================
+// INITIALIZATION
+// =========================
+document.addEventListener("DOMContentLoaded", () => {
+    loadHistory();
+    document.getElementById("issue").value = "";
+});
+
+// =========================
+// DIAGNOSIS FUNCTION
+// =========================
+function diagnoseIssue() {
+    let issue = document.getElementById("issue").value;
+    let customIssue = document.getElementById("customIssue").value.trim();
+    let diagnosis = "";
+
+    if (issue) {
+        diagnosis = getDiagnosis(issue);
+        speakText(diagnosis); // Voice for diagnosis
+        saveDiagnosis(diagnosis);
+
+    } else if (customIssue) {
+        diagnosis = `Looking into: ${customIssue}...`;
+        speakText(`You said: ${customIssue}. Let's search for a solution.`);
+        setTimeout(() => {
+            searchOnGoogle(customIssue, true); // true = also open YouTube
+        }, 1500);
+
+    } else {
+        diagnosis = "Please select or enter an issue first.";
+        speakText(diagnosis);
+    }
+
+    document.getElementById("output").innerHTML = diagnosis;
+}
+
+// =========================
+// DIAGNOSIS MESSAGES
+// =========================
+function getDiagnosis(issue) {
+    const diagnoses = {
+        batteryDrain: "Battery drains fast. Try reducing screen brightness, disabling background apps, and checking battery health.",
+        notCharging: "Not charging. Check charger, cable, and clean charging port.",
+        screenUnresponsive: "Screen not responding. Try restarting or booting into safe mode.",
+        // ... rest of your issues ...
+        waterDamage: "Water damage suspected. Power off immediately and dry using silica gel or repair service."
+    };
+    return diagnoses[issue] || "No diagnosis available for this issue.";
+}
+
+// =========================
+// TEXT TO SPEECH
+// =========================
+function speakText(text) {
+    if ('speechSynthesis' in window) {
+        let utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1;
+        utterance.pitch = 1;
+        speechSynthesis.speak(utterance);
+    }
+}
+
+// =========================
+// SEARCH FUNCTIONS
+// =========================
+function searchOnGoogle(query, openYouTube = false) {
+    speakText(`Searching Google for ${query}`);
+    window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}+phone+fix`, '_blank');
+    if (openYouTube) {
+        setTimeout(() => {
+            window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(query)}+phone+repair`, '_blank');
+        }, 1000);
+    }
+}
+
+// =========================
+// SAVE & LOAD HISTORY
+// =========================
+function saveDiagnosis(text) {
+    let history = JSON.parse(localStorage.getItem("diagnosisHistory")) || [];
+    history.push({ text, date: new Date().toLocaleString() });
+    localStorage.setItem("diagnosisHistory", JSON.stringify(history));
+    loadHistory();
+}
+
+function loadHistory() {
+    let history = JSON.parse(localStorage.getItem("diagnosisHistory")) || [];
+    let list = document.getElementById("historyList");
+    list.innerHTML = "";
+    history.forEach(item => {
+        let li = document.createElement("li");
+        li.textContent = `${item.date} - ${item.text}`;
+        list.appendChild(li);
+    });
+}
+
 
 
