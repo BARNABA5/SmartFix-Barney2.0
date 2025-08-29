@@ -7,21 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =========================
-// TAB SWITCHING
-// =========================
-function openTab(tabId) {
-    document.querySelectorAll(".tab-content").forEach(tab => {
-        tab.classList.remove("active");
-    });
-    document.getElementById(tabId).classList.add("active");
-
-    // If user goes to tips, show bolts falling
-    if (tabId === "tips") {
-        showBolts3D();
-    }
-}
-
-// =========================
 // DIAGNOSIS FUNCTION
 // =========================
 function diagnoseIssue() {
@@ -34,7 +19,6 @@ function diagnoseIssue() {
 
     } else if (customIssue) {
         diagnosis = `Looking into: ${customIssue}...`;
-        speakText(`You said: ${customIssue}. Let's search for a solution.`);
         setTimeout(() => {
             searchOnGoogle(customIssue, true);
         }, 1500);
@@ -43,13 +27,13 @@ function diagnoseIssue() {
         diagnosis = "Please select or enter an issue first.";
     }
 
-    // Show result in UI
+    // Show diagnosis in UI
     document.getElementById("output").innerHTML = diagnosis;
 
-    // Speak the diagnosis
+    // Always speak the diagnosis (even if it's custom or invalid)
     speakText(diagnosis);
 
-    // Save if it's a valid diagnosis
+    // Save valid diagnosis
     if (diagnosis && !diagnosis.startsWith("Please")) {
         saveDiagnosis(diagnosis);
     }
@@ -138,9 +122,34 @@ function loadHistory() {
     let list = document.getElementById("historyList");
     if (!list) return;
     list.innerHTML = "";
-    history.forEach(item => {
+    history.forEach((item, index) => {
         let li = document.createElement("li");
-        li.textContent = `${item.date} - ${item.text}`;
+        li.textContent = `${item.date} - ${item.text} `;
+
+        // Add delete button for each item
+        let delBtn = document.createElement("button");
+        delBtn.textContent = "❌";
+        delBtn.style.marginLeft = "10px";
+        delBtn.onclick = () => deleteDiagnosis(index);
+
+        li.appendChild(delBtn);
         list.appendChild(li);
     });
+}
+
+// =========================
+// DELETE & CLEAR HISTORY
+// =========================
+function deleteDiagnosis(index) {
+    let history = JSON.parse(localStorage.getItem("diagnosisHistory")) || [];
+    history.splice(index, 1); // remove one item
+    localStorage.setItem("diagnosisHistory", JSON.stringify(history));
+    loadHistory();
+}
+
+function clearHistory() {
+    localStorage.removeItem("diagnosisHistory");
+    loadHistory();
+    document.getElementById("output").innerHTML = "";
+    speakText("All past diagnosis history has been cleared.");
 }
